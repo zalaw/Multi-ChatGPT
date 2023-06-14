@@ -5,6 +5,7 @@ import { Server } from "socket.io";
 import cors from "cors";
 import crypto from "crypto";
 import { ChatCompletionRequestMessageRoleEnum, Configuration, OpenAIApi } from "openai";
+import path from "path";
 
 config();
 
@@ -329,6 +330,14 @@ io.on("connection", socket => {
     }
   });
 });
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../public")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public", "index.html"));
+  });
+}
 
 server.listen(PORT, () => {
   rooms.clear();
