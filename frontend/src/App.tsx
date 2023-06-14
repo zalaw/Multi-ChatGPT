@@ -28,12 +28,15 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const socket = io("http://localhost:3001", {
-      reconnection: true,
-      reconnectionDelay: 1000,
-      reconnectionDelayMax: 5000,
-      reconnectionAttempts: 5,
-    });
+    const socket = io(
+      process.env.NODE_ENV === "development" ? "http://localhost:3001" : "https://multi-chatgpt.onrender.com/",
+      {
+        reconnection: true,
+        reconnectionDelay: 1000,
+        reconnectionDelayMax: 5000,
+        reconnectionAttempts: 5,
+      }
+    );
 
     setSocket(socket);
 
