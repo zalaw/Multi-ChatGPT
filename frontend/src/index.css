@@ -1,0 +1,40 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+textarea::placeholder,
+input::placeholder {
+  color: #8b8b9d !important;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+.loading {
+  width: 1px;
+  height: 70%;
+  top: 50%;
+  position: relative;
+  transform: translateY(-50%);
+  border-right: 10px solid #d5d7e0;
+  animation: cursor 0.5s step-end infinite alternate;
+}
+
+@keyframes cursor {
+  50% {
+    border-color: transparent;
+  }
+}
