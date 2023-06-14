@@ -207,7 +207,7 @@ io.on("connection", socket => {
       if (!res) throw new Error();
 
       const messageFromOpenAI =
-        res.data.choices[0]?.message?.content.split(/```([^`]+?)```/g).map((part: string, index: number) => {
+        res.data.choices[0]?.message?.content?.split(/```([^`]+?)```/g).map((part: string, index: number) => {
           if (index % 2 === 0) {
             const snippetItem: SnippetItem = {
               type: "text",
