@@ -88,9 +88,6 @@ export function RoomProvider({ children }: { children: ReactNode }) {
   };
 
   const toggleClientChatDisabled = (clientId: string, disabled: boolean) => {
-    console.log("toggleClientChatDisabled");
-    console.log(room.clients);
-
     // setRoom(curr => ({
     //   ...curr,
     //   clients: room.clients.map(client => (client.id === clientId ? { ...client, chatDisabled: disabled } : client)),

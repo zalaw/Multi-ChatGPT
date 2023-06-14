@@ -204,11 +204,8 @@ io.on("connection", socket => {
         ],
       });
 
-      console.log(res.data, "\n\n");
-
-      const messageFromOpenAI = res.data.choices[0]?.message?.content
-        .split(/```([^`]+?)```/g)
-        .map((part: string, index: number) => {
+      const messageFromOpenAI =
+        res.data.choices[0]?.message?.content.split(/```([^`]+?)```/g).map((part: string, index: number) => {
           if (index % 2 === 0) {
             const snippetItem: SnippetItem = {
               type: "text",
@@ -230,9 +227,7 @@ io.on("connection", socket => {
 
             return snippetItem;
           }
-        });
-
-      console.log("messageFromOpenAI", messageFromOpenAI);
+        }) || "";
 
       const messageToAdd: Message = {
         role: "assistant",
@@ -253,8 +248,6 @@ io.on("connection", socket => {
   });
 
   socket.on("TOGGLE_CHAT_DISABLED", clientId => {
-    console.log("TOGGLE_CHAT_DISABLED on SERVER");
-
     const [_, roomCode] = Array.from(socket.rooms.values());
 
     const room = rooms.get(roomCode);
@@ -324,9 +317,7 @@ io.on("connection", socket => {
     }
 
     if (room.clients.every(client => client.id === "")) {
-      console.log("room", roomCode, "deleted");
       rooms.delete(roomCode);
-      console.log("rooms remaining", rooms.entries());
     }
   });
 });

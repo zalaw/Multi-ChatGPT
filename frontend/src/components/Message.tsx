@@ -15,8 +15,6 @@ import hljs from "highlight.js";
 import { Message as IMessage, TextContent, CodeContent } from "../interfaces/Message";
 
 function Message({ message }: { message: IMessage }) {
-  console.log("message in Message.tsx", message);
-
   return (
     <>
       <Divider />

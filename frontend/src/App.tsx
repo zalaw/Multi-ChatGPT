@@ -97,7 +97,6 @@ function App() {
     });
 
     socket.on("TOGGLE_CHAT_DISABLED", ({ clients }) => {
-      console.log(clients);
       setClients(clients);
     });
 
